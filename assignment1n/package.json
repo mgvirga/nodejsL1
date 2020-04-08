@@ -1,0 +1,23 @@
+{
+  "name": "t",
+  "version": "1.0.0",
+  "description": "i have no idea",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app..js",
+    "test": "\"echo \"Error: no test specified\" && exit 1\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "ang"
+  },
+  "keywords": [
+    "Nodejs"
+  ],
+  "author": "matt",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
