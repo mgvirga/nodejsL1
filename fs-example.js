@@ -1,47 +1,44 @@
 const fs = require("fs");
 
-const argv = require('yargs').argv
+const argv = require('yargs').argv;
 
 const filemes = "You are awesome!";
-// const myarr = [];
-//creates file
-// if(myarr.length > 0)
-// {
-    
-// }
+
+var newFileName = argv.filename;
+
+const readline = require('readline-sync');
+
 //opens the file arr.txt
 fs.open("arr.txt", "r+", (err, response)=>{
     if(err)
     {
-        console.error(err, "Error Occured");
-        return false;
+        
     }
     console.log("File opened successfully!!!");
 })
 
-//creates an array and reads line by line what the contents of the file are
-var array = fs.readFileSync('arr.txt').toString().split("\n");
-console.log(argv.filename);
-var checkFileName = false;
+//creates an array that hold arr.txt
+var fileList = fs.readFileSync('arr.txt').toString().split("\n");
 
-//check if file name exists and if it does dont do anything
-for(i in array) 
+//checks if file exists
+while(fileList.indexOf(newFileName) > -1)
 {
-    if(array[i].filename = argv.filename)
+    console.log(newFileName + " File exists");
+    var newFileName = readline.question("Please enter a new file name? ");
+
+    if(fileList.indexOf(newFileName) <= 0)
     {
-        checkFileName = true;
-        console.log("The file exists please give a new filename");
+        break;
     }
 }
-if(!checkFileName)
-{
-    console.log(array[i]);
-    console.log("The count of the array is " + array.length)
-    //the space counts as a new line. adds a new string to line as file name
-    fs.appendFileSync("arr.txt", argv.filename + "\r\n");
 
-    //create a new file using input from a paramter as a text file and posting a message in said file
-    //the message reades filemes value
-    fs.writeFileSync(argv.filename + ".txt", filemes);
-    console.log("File write completed.")
-}
+//add to each value of arr the values in the array
+fs.appendFileSync("arr.txt", newFileName + ".txt\n");
+    
+//create a new file using input from a paramter as a text file and posting a message in said file
+//the message reades filemes value
+fs.writeFileSync(newFileName + ".txt", filemes);
+console.log(newFileName + ".txt was created with mes: " + filemes)
+
+
+
